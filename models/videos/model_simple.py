@@ -198,7 +198,8 @@ class CycleTime(nn.Module):
     def forward(self, ximg1, patch2, img2, theta):
         B, T = ximg1.shape[:2]
         videoclip1  = ximg1
-
+        # normal target tensor shape: [bs, channels, time, h2, w2]
+        # normal patch tensor shape: [bs, channels, h1, w1]
         # base features
         r50_feat1, r50_feat1_pre, r50_feat1_norm = self.forward_base(videoclip1)
 

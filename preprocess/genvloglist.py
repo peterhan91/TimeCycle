@@ -12,7 +12,7 @@ fout = open(outlist, 'w')
 for line in file:
     line = line[:-1]
     fname = foldername + line
-    fnms  = len(os.listdir(fname))
+    fnms  = len(os.listdir(fname)) # # of .jpeg images in that folder
 
     outstr = fname + ' ' + str(fnms) + '\n'
     fout.write(outstr)
