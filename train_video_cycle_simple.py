@@ -47,12 +47,12 @@ from utils import Logger, AverageMeter, mkdir_p, savefig
 import models.dataset.vlog_train as vlog
 
 params = {}
-params['filelist'] = '/nfs.yoda/xiaolonw/vlog/vlog_frames_12fps.txt'
-params['imgSize'] = 256
-params['imgSize2'] = 320
-params['cropSize'] = 240
-params['cropSize2'] = 80
+params['filelist'] = '/media/tianyu.han/mri-scratch/DeepLearning/BraTS/brats_frames.txt'
+params['imgSize'] = 160
+params['cropSize'] = 120
+params['cropSize2'] = 40
 params['offset'] = 0
+# params['imgSize2'] = 320
 
 def str_to_bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -68,7 +68,7 @@ parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 
 # Datasets
 parser.add_argument('-d', '--data', default='path to dataset', type=str)
-parser.add_argument('-j', '--workers', default=12, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=16, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 # Optimization options
 parser.add_argument('--epochs', default=30, type=int, metavar='N',
@@ -80,9 +80,9 @@ parser.add_argument('--momentum', default=0.5, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=0.0, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 # Checkpoints
-parser.add_argument('-c', '--checkpoint', default='/scratch/xiaolonw/pytorch_checkpoints/CycleTime/', type=str, metavar='PATH',
+parser.add_argument('-c', '--checkpoint', default='torch_CPs/CycleTime/', type=str, metavar='PATH',
                     help='path to save checkpoint (default: checkpoint)')
-parser.add_argument('--resume', default='', type=str, metavar='PATH',
+parser.add_argument('--resume', default='resume_checkpoints/checkpoint_14.pth.tar', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 # Miscs
 parser.add_argument('--manualSeed', type=int, help='manual seed')
@@ -91,12 +91,12 @@ parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
 parser.add_argument('--pretrained', default='', type=str, metavar='PATH',
                     help='use pre-trained model')
 #Device options
-parser.add_argument('--gpu-id', default='0,1,2,3', type=str,
+parser.add_argument('--gpu-id', default='0', type=str,
                     help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('--predDistance', default=4, type=int,
                     help='predict how many frames away')
 parser.add_argument('--seperate2d', type=int, default=0, help='manual seed')
-parser.add_argument('--batchSize', default=36, type=int,
+parser.add_argument('--batchSize', default=16, type=int,
                     help='batchSize')
 parser.add_argument('--T', default=512**-.5, type=float,
                     help='temperature')

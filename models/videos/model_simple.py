@@ -105,7 +105,7 @@ class CycleTime(nn.Module):
         corrfeat = torch.matmul(r50_feat2_vec, patch_feat1_vec)
 
         corrfeat = torch.div(corrfeat, self.T)
-
+        # print('debug corrfeat shape: ', corrfeat.shape, 'feat vec shape: ', r50_feat2_vec.shape, patch_feat1_vec.shape)
         corrfeat  = corrfeat.view(corrfeat.size(0), T, self.spatial_out1 * self.spatial_out1, self.spatial_out2, self.spatial_out2)
         corrfeat  = F.softmax(corrfeat, dim=2)
         corrfeat  = corrfeat.view(corrfeat.size(0), T * self.spatial_out1 * self.spatial_out1, self.spatial_out2, self.spatial_out2)

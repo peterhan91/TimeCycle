@@ -19,7 +19,11 @@ def im_to_torch(img):
 
 def load_image(img_path):
     # H x W x C => C x H x W
-    img = cv2.imread(img_path)
+    img = cv2.imread(img_path) # directly load image into RGB mode
+    if img is None:
+        print ('debug image path: ', img_path)
+    # print('debug image path: ', img_path)
+    # print('debug loaded image shape: ', str(img.shape))
     img = img.astype(np.float32)
     img = img / 255.0
     img = img[:,:,::-1]

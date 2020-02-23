@@ -19,7 +19,7 @@ class InflatedResNet(torch.nn.Module):
             resnet2d.conv1, time_dim=1, time_padding=0, center=True)
         self.bn1 = inflate.inflate_batch_norm(resnet2d.bn1)
         self.relu = torch.nn.ReLU(inplace=True)
-        self.maxpool1 = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1))
+        self.maxpool1 = nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1))
 
         self.layer1 = inflate_reslayer(resnet2d.layer1)
         self.layer2 = inflate_reslayer(resnet2d.layer2)

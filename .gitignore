@@ -1,0 +1,6 @@
+._*
+*.pyc
+.DS_Store
+*.npz
+__pycache__/
+resume_checkpoints/

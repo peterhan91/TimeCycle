@@ -48,7 +48,7 @@ class VlogSet(data.Dataset):
         for line in f:
             rows = line.split()
             jpgfile = rows[0]   # sth like /YOUR_DATAFOLDER/B/X/g/v_afgUDkDaBXg/010/
-            fnum = int(rows[1]) # how many images in that folder
+            fnum = int(rows[1]) - 1 # how many images in that folder
             # fnum = len(os.listdir(fname))
 
             self.jpgfiles.append(jpgfile)
@@ -128,7 +128,7 @@ class VlogSet(data.Dataset):
             # img_path = folder_path + "{:02d}.jpg".format(nowid)
             # specialized for fouhey format
             newid = nowid + 1                                   # [7,9,11,13]
-            img_path = folder_path + "{:06d}.jpg".format(newid) # [7.jpg, 9.jpg, 11.jpg, 13.jpg]
+            img_path = folder_path + '/' + str(newid) + '.jpg' # [7.jpg, 9.jpg, 11.jpg, 13.jpg]
 
             img = load_image(img_path)  # CxHxW
 
@@ -171,7 +171,7 @@ class VlogSet(data.Dataset):
             newid = int(future_idx + 1 + i * frame_gap) # int(21+1+i*2) --> [22, 24]
             if newid > fnum:                            # suppose: fnum=25
                 newid = fnum                            # let newid=last frame
-            img_path = folder_path + "{:06d}.jpg".format(newid)
+            img_path = folder_path + '/' + str(newid) + '.jpg'
 
             img = load_image(img_path)  # CxHxW
             ht, wd = img.size(1), img.size(2)
